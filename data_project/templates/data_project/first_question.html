@@ -1,0 +1,26 @@
+{% include "data_project/layout.html" %}
+
+{% block question %}
+    <h3>1. Plot the number of matches played per year of all the years in IPL.</h3>
+{% endblock %}
+
+{% block body %}
+    <div id="container"></div>
+    <script>
+    Highcharts.chart('container', {
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: 'Matches played per season'
+        },
+        xAxis: {
+            categories: {{ season|safe }}
+        },
+        series: [{
+            name: 'Season -->',
+            data: {{ frequency|safe }}
+        }]
+    });
+    </script>
+{% endblock %}

@@ -1,0 +1,64 @@
+* {
+    box-sizing: border-box;
+}
+body {
+    font: 15px/1.5 Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+a {
+    text-decoration: none;
+    color: #555555;
+}
+a:hover {
+    opacity: 0.4;
+}
+
+.btn {
+    background-color: #555555;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    padding: 10px 30px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+.info {background-color: #008CBA;} /* Blue */
+.danger {background-color: #f44336;} /* Red */
+.grey-button {background-color: #e7e7e7; color: black;} /* Gray */
+
+.nav-bar {
+    width: 100%;
+    margin: auto;
+    overflow: hidden;
+    background-color: #172c50;
+    color: #ffffff;
+}
+
+nav h2 {
+    float: left;
+    padding-left: 10px;
+    margin-top: 20px;
+    color: #ffffff;
+}
+.line_float_left {
+    float: right;
+    padding-top: 10px;
+    padding-right: 20px;
+}
+
+.line_float_left li{
+    list-style-type: none;
+    display: inline-block;
+    float: left;
+}
+.line_float_left li a {
+    text-decoration: none;
+    color: #ffffff;
+    padding: 14px;
+}

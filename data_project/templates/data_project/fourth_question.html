@@ -1,0 +1,26 @@
+{% include "data_project/layout.html" %}
+
+{% block question %}
+    <h3>4. For the year 2015 plot the top economical bowlers.</h3>
+{% endblock %}
+
+{% block body %}
+    <div id="container"></div>
+    <script>
+    Highcharts.chart('container', {
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: 'Top 10 economic bowler in 2015'
+        },
+        xAxis: {
+            categories: {{ bowler|safe }}
+        },
+        series: [{
+            name: 'Bowlers -->',
+            data: {{ eco_rate|safe }}
+        }]
+    });
+    </script>
+{% endblock %}

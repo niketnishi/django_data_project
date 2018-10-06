@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        {% load static %}
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" type="text/css" href="{% static 'data_project/style.css' %}">
+        <script src="https://code.highcharts.com/highcharts.src.js"></script>
+        {% if title %}
+            <title>Data Project - {{ title }}</title>
+        {% else %}
+            <title>Data Project</title>
+        {% endif %}
+        <meta name="author" content="Niket Nishi">
+        <meta name="description" content="High Charts">
+    </head>
+    <body>
+        <header class="nav-bar">
+            <nav>
+                <a href="{% url 'data_project:index' %}"><h2>Home</h2></a>
+                <ul class="line_float_left">
+                    <li><a href="{% url 'data_project:num_of_match_each_year' %}">First Question</a></li>
+                    <li><a href="{% url 'data_project:stacked_bar_chart' %}">Second Question</a></li>
+                    <li><a href="{% url 'data_project:match_2016_extra_run' %}">Third Question</a></li>
+                    <li><a href="{% url 'data_project:match_2015_eco_bowler' %}">Fourth Question</a></li>
+                    <li><a href="{% url 'data_project:match_summary_over_years' %}">Fifth Question</a></li>
+                </ul>
+            </nav>
+        </header>
+        {% block question %}{% endblock %}
+        {% block body %}{% endblock %}
+    </body>
+</html>

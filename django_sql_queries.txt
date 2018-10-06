@@ -1,0 +1,68 @@
+######### Setting up django on Ubuntu and useful commands ##########
+
+--> pip install django
+--> django-admin startproject django_data_project
+--> python manage.py startapp data_project
+--> python manage.py createsuperuser
+
+--> python manage.py runserver
+--> python manage.py runserver 8080
+--> python manage.py runserver 0:8080      (0 is shortcut for 0.0.0.0)
+
+--> python manage.py makemigrations
+--> python manage.py makemigrations data_project    (For a particular app)
+--> python manage.py sqlmigrate data_project 0001   (sql version of changes that is going to be applied on database)
+--> python manage.py migrate    (Applies the staged changes to database)
+
+--> python manage.py shell      (Perform database queries on CLI)
+
+########### Django ORM methods #############
+
+--> save()
+--> update()
+--> delete()
+--> create()
+--> count()
+
+########### Running queries on django shell ###########
+
+--> sudo apt-get install sqlite3    (For running queries)
+from <app_name>.models import Choice, Question
+>>> Question.objects.all()
+>>> Question.objects.filter(id=1)
+>>> Question.objects.filter(question_text__startswith='What')
+>>> Entry.objects.get(headline__contains='Lennon')
+
+# Get the question that was published this year.
+>>> from django.utils import timezone
+>>> current_year = timezone.now().year
+>>> Question.objects.get(pub_date__year=current_year)
+
+# An “exact” match  (exact)
+>>> Entry.objects.get(headline__exact="Cat bites dog")
+
+# A case-insensitive match  (iexact)
+>>> Blog.objects.get(name__iexact="beatles blog")
+
+# shortcut for primary-key exact lookups.
+# The following is identical to Question.objects.get(id=1).
+>>> Question.objects.get(pk=1)
+
+# Make sure our custom method worked.   (Calling a function on the fetched object)
+>>> q = Question.objects.get(pk=1)
+>>> q.was_published_recently()
+
+# Display any related object id
+>>> q.choice_set.all()
+>>> q.choice_set.create(choice_text='Not much', votes=0)
+
+>>> c = q.choice_set.create(choice_text='Just hacking again', votes=0)
+>>> c.question
+>>> q.choice_set.count()
+
+############## Important links to visit ###############
+
+--> https://docs.djangoproject.com/en/2.1/
+--> https://simpleisbetterthancomplex.com/tutorial/2018/08/27/how-to-create-custom-django-management-commands.html
+--> https://simpleisbetterthancomplex.com/tutorial/2018/04/03/how-to-integrate-highcharts-js-with-django.html
+--> https://www.highcharts.com/demo/column-stacked

@@ -1,0 +1,26 @@
+{% include "data_project/layout.html" %}
+
+{% block question %}
+    <h3>3. For the year 2016 plot the extra runs conceded per team.</h3>
+{% endblock %}
+
+{% block body %}
+    <div id="container"></div>
+    <script>
+    Highcharts.chart('container', {
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: 'Extra Runs given per team in 2016'
+        },
+        xAxis: {
+            categories: {{ lst_of_team|safe }}
+        },
+        series: [{
+            name: 'Team -->',
+            data: {{ lst_of_extra_runs|safe }}
+        }]
+    });
+    </script>
+{% endblock %}

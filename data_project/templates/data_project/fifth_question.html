@@ -1,0 +1,26 @@
+{% include "data_project/layout.html" %}
+
+{% block question %}
+    <h3>5. Match summary for players winning man of the match maximum number of times in a given year.</h3>
+{% endblock %}
+
+{% block body %}
+    <div id="container"></div>
+    <script>
+    Highcharts.chart('container', {
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: 'Max number of man of the match in year 2017'
+        },
+        xAxis: {
+            categories: {{ player_of_match|safe }}
+        },
+        series: [{
+            name: 'Player -->',
+            data: {{ frequency|safe }}
+        }]
+    });
+    </script>
+{% endblock %}
