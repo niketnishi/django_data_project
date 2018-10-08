@@ -66,3 +66,17 @@ from <app_name>.models import Choice, Question
 --> https://simpleisbetterthancomplex.com/tutorial/2018/08/27/how-to-create-custom-django-management-commands.html
 --> https://simpleisbetterthancomplex.com/tutorial/2018/04/03/how-to-integrate-highcharts-js-with-django.html
 --> https://www.highcharts.com/demo/column-stacked
+
+#### Redis Links ######
+--> https://realpython.com/caching-in-django-with-redis/
+--> https://www.tutorialspoint.com/django/django_caching.htm
+--> https://code.tutsplus.com/tutorials/how-to-cache-using-redis-in-django-applications--cms-30178
+
+#### Steps to configure redis-server #######
+--> sudo apt-get install redis-server   (Install redis-server)
+--> sudo redis-server   (start redis server)
+--> pip install redis   (In virtual environment)
+
+--> redis-cli -n 1
+--> redis-cli
+--> keys *

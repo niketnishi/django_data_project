@@ -5,7 +5,11 @@ from .models import Matches, Deliveries
 from django.db.models import Count, Sum
 from collections import OrderedDict
 import json
+from django.views.decorators.cache import cache_page
+from django.conf import settings
+from django.core.cache.backends.base import DEFAULT_TIMEOUT
 
+CACHE_TTL = getattr(settings, 'CACHE_TTL', DEFAULT_TIMEOUT)
 
 def index(request):
     return render(request, 'data_project/index.html')
@@ -13,7 +17,7 @@ def index(request):
 # Plot the number of matches played per year of all the years in IPL.
 # annotate is used to create new fields
 
-
+@cache_page(CACHE_TTL)
 def num_of_match_each_year(request):
     data_dict = OrderedDict()
     result = Matches.objects.values('season').annotate(season_count=Count("season"))
@@ -47,7 +51,7 @@ def matches_won_by_team(data_dict, lst_of_winning_team):    # Returns the matche
                 matches_per_team[team].append(0)
     return matches_per_team
 
-
+@cache_page(CACHE_TTL)
 def stacked_bar_chart(request):
     data_dict, lst_of_winning_team = {}, []
     result = Matches.objects.values('season', 'winner').annotate(win_count=Count("winner"))
@@ -71,7 +75,7 @@ def stacked_bar_chart(request):
 
 # For the year 2016 plot the extra runs conceded per team.
 
-
+@cache_page(CACHE_TTL)
 def match_2016_extra_run(request):
     data_dict, lst_of_id = OrderedDict(), []
 
@@ -94,7 +98,7 @@ def match_2016_extra_run(request):
 
 # For the year 2015 plot the top economical bowlers.
 
-
+@cache_page(CACHE_TTL)
 def match_2015_eco_bowler(request):
     eco_bowler, lst_of_id = {}, []
 
@@ -118,7 +122,7 @@ def match_2015_eco_bowler(request):
 
 # Match summary for players winning man of the match maximum number of times in a given year.
 
-
+@cache_page(CACHE_TTL)
 def match_summary_over_years(request):
     data_dict = {}
     result = Matches.objects.values('player_of_match').filter(season='2017').annotate(frequency=Count('player_of_match'))
