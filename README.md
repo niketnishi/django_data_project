@@ -52,6 +52,7 @@ CACHES = {
 ```
 $ redis-cli -n 1
 $ keys *    (To view all the cached page)
+$ flushall  (To clear all the cached pages)
 ```
 * Important Links for Redis
 ```
