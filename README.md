@@ -98,31 +98,31 @@ sqlite> Question.objects.filter(id=1)
 sqlite> Question.objects.filter(question_text__startswith='What')
 sqlite> Entry.objects.get(headline__contains='Lennon')
 ```
-#### Get the question that was published this year.
+##### Get the question that was published this year.
 ```
 sqlite> from django.utils import timezone
 sqlite> current_year = timezone.now().year
 sqlite> Question.objects.get(pub_date__year=current_year)
 ```
-#### An “exact” match  (exact)
+##### An “exact” match  (exact)
 ```
 sqlite> Entry.objects.get(headline__exact="Cat bites dog")
 ```
-#### A case-insensitive match  (iexact)
+##### A case-insensitive match  (iexact)
 ```
 sqlite> Blog.objects.get(name__iexact="beatles blog")
 ```
-#### The following is identical to Question.objects.get(id=1).
+##### The following is identical to Question.objects.get(id=1).
 Shortcut for primary-key exact lookups.
 ```
 sqlite> Question.objects.get(pk=1)
 ```
-#### Make sure our custom method worked.   (Calling a function on the fetched object)
+##### Make sure our custom method worked.   (Calling a function on the fetched object)
 ```
 sqlite> q = Question.objects.get(pk=1)
 sqlite> q.was_published_recently()
 ```
-#### Display any related object id
+##### Display any related object id
 ```
 sqlite> q.choice_set.all()
 sqlite> q.choice_set.create(choice_text='Not much', votes=0)
